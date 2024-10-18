@@ -6,6 +6,18 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS ON)  
 
 set(CMAKE_BUILD_TYPE "Release")
+# set(CMAKE_BUILD_TYPE "Debug")
+# SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g")
+
+if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+  message(STATUS "Building in Debug mode")
+elseif(CMAKE_BUILD_TYPE STREQUAL "Release")
+  message(STATUS "Building in Release mode")
+  set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -g")
+  set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -g")
+endif()
+
+# set(CMAKE_BUILD_TYPE "Debug")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin/${CMAKE_BUILD_TYPE})
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/lib)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/lib)
@@ -17,12 +29,28 @@ set(SPDLOG_INCLUDE "D:/00.Lib/spdlog/include")
 # test 
 set(QUEUE ${CMAKE_CURRENT_SOURCE_DIR}/../queue)
 set(SMARTPTR ${CMAKE_CURRENT_SOURCE_DIR}/../smart_ptr)
+set(CONTAINER ${CMAKE_CURRENT_SOURCE_DIR}/../container)
+set(THREAD ${CMAKE_CURRENT_SOURCE_DIR}/../thread)
+set(DATASTRUCTURE ${CMAKE_CURRENT_SOURCE_DIR}/../dataStructure)
+set(ALGRITHM ${CMAKE_CURRENT_SOURCE_DIR}/../algrithm)
+
 
 include_directories(${QUEUE})
-include_directories(${SMARTPTR})
+include_directories(${SMARTPTR}
+                    ${CONTAINER}
+                    ${THREAD}
+                    ${DATASTRUCTURE}
+                    ${ALGRITHM}
+)
+
 # test end
 
-set(SOURCE main.cpp)
+set(SOURCE main.cpp
+          ../container/unorder.cpp
+          ../dataStructure/myHashTable.cpp
+          ../algrithm/tSort.cpp
+          ../algrithm/tHeapSort.cpp
+)
 add_executable(test ${SOURCE})
 
 include_directories(${SPDLOG_INCLUDE})
