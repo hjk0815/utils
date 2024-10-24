@@ -3,7 +3,7 @@
 
 // 哈希表每次重建增长后的大小
 int hashsize[] = { 11, 31, 61, 127, 251, 503 };
-int index    = 0;
+int hashIndex  = 0;
 
 
 
@@ -78,8 +78,8 @@ Status recreateHash(HashTable &H)
 	orcd = H.rcd;
 	otag = H.tag;
 	osize = H.size;
-  printf("recreateHash size:: %d",index);
-	initHashTable(H, hashsize[index++]);
+  printf("recreateHash size:: %d",hashIndex);
+	initHashTable(H, hashsize[hashIndex++]);
 	//把所有元素，按照新哈希函数放到新表中
 	for (i = 0; i < osize; i++) {
 		if (1 == otag[i]) {

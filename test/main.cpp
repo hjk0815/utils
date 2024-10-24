@@ -180,6 +180,8 @@ void templateTest(){
 
 
 
+
+
 void threadTest(){
 
   background_task f;
@@ -212,7 +214,7 @@ void threadTest(){
 }
 
 extern int hashsize[];
-extern int index;
+extern int hashIndex;
 
 void hashTest(){
 	printf("-----哈希表-----\n");
@@ -224,9 +226,9 @@ void hashTest(){
 
 	//初始化哈希表
 	printf("初始化哈希表\n");
-	cout << index << endl;
+	cout << hashIndex << endl;
 	// initHashTable(H, hashsize[index++]);
-	if (HASHOK == initHashTable(H, hashsize[index++])) {
+	if (HASHOK == initHashTable(H, hashsize[hashIndex++])) {
     printf("初始化成功\n");
   }
 	//插入哈希表
@@ -257,12 +259,11 @@ void hashTest(){
 		insertHash(H, key);
 		printHashTable(H);
 	}
-
-
 }
 
 void sortTest(){
   vector<int> arr = {4,3,5,63,11,34,4,9,23};
+  cout << "arr size :: " << arr.size() << endl;
   myQuickSort(arr,0,arr.size());
   cout << arr <<endl;
 }
@@ -271,7 +272,11 @@ void heapSortTest(){
   maxHeapSort(arr);
   cout << arr << endl;
 }
-
+void shellSortTest(){
+  vector<int> arr = { 3, 5, 3, 0, 8, 6, 1, 5, 8, 6, 2, 4, 9, 4, 7, 0, 1, 8, 9, 7, 3, 1, 2, 5, 9, 7, 4, 0, 2, 6 };
+  shellSort(arr);
+  cout << arr << endl;  
+}
 
 
 
@@ -294,9 +299,11 @@ int main(){
   // ********************************
   // hashTest();  // 哈希表测试
   // sortTest();   // sort 测试 bubble, quick sort
-  heapSortTest();  // 堆排序
+  // heapSortTest();  // 堆排序
+  shellSortTest(); // shell sort 测试
   // ********************************
   cout << "please enter any to quit" << endl;
   std::getchar();
   return 0;
 }
+

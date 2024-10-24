@@ -24,7 +24,7 @@ void maxHeapSort(std::vector<int> &v);
 
 
 
-
+// 归并 
 template<typename T>
 void merge_sort_recursive(T arr[], T reg[], int start, int end) {
 	if (start >= end)
@@ -50,4 +50,29 @@ void merge_sort(T arr[], const int len) {
 	T *reg = new T[len];
 	merge_sort_recursive(arr, reg, 0, len - 1);
 	delete[] reg;
+}
+
+// shell sort
+/*
+  希尔排序是插入排序的一种，又称“缩小增量排序”，是直接插入排序算法的一种更高效的改进版本。
+  希尔排序是非稳定排序算法。
+  希尔排序是把记录按下标的一定增量分组，对每组使用直接插入排序算法排序；
+  随着增量逐渐减少，每组包含的关键词越来越多，当增量减至1时，整个文件恰被分成一组，算法便终止。
+*/
+template<typename T>
+void shellSort(std::vector<T> &arr){
+	int len = arr.size();
+	int h = 1;
+	while (h < len / 3)
+	{
+		h = 3 * h + 1;
+	}
+	while (h >= 1){
+		for (int i = h; i < len; i++){
+			for (int j = i; j >= h && arr[j] < arr[j - h]; j-=h){
+				std::swap(arr[j],arr[j-h]);
+			}
+		}
+		h /= 3;
+	}
 }

@@ -45,17 +45,20 @@ include_directories(${SMARTPTR}
 
 # test end
 
+find_package(Threads REQUIRED)
+
 set(SOURCE main.cpp
-          ../container/unorder.cpp
-          ../dataStructure/myHashTable.cpp
-          ../algrithm/tSort.cpp
-          ../algrithm/tHeapSort.cpp
+../container/unorder.cpp
+../dataStructure/myHashTable.cpp
+../algrithm/tSort.cpp
+../algrithm/tHeapSort.cpp
 )
 add_executable(test ${SOURCE})
 
 include_directories(${SPDLOG_INCLUDE})
 # include_directories(${HDF5_INCLUDE})
 
+target_link_libraries(test PRIVATE Threads::Threads)
 # target_link_libraries(test ${HDF5_LIB}/hdf5.lib
 #                           ${HDF5_LIB}/hdf5_tools.lib
 #                           ${HDF5_LIB}/hdf5_cpp.lib
